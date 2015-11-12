@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ExpressDemo</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-3.3.5-dist/css/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap-3.3.5-dist/css/bootstrap-theme.css' />
+  </head>
+  <body>
+    <h1>Chat Room</h1>
+    <p>Welcome to Express_ChatRoom</p>
+    <div class="chat-header">
+      <div class="input-group">
+        <input type="text" class="form-control" id="host" value="localhost" placeholder="伺服器名稱" aria-label="伺服器名稱">
+        <div class="input-group-btn">
+          <div class="btn btn-default" id="btnConn">連接伺服器</div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-content">
+    		<textarea class="form-control" id="rmsg" rows="10" cols="60" placeholder="聊天室內容" readonly></textarea>
+        <div class="input-group">
+          <input type="text" class="form-control" id="smsg" size="60" placeholder="輸入訊息" aria-label="輸入訊息">
+          <div class="input-group-btn">
+            <div class="btn btn-default" id="btnSend">Send</div>
+          </div>
+    		</div>
+    </div>
+  </body>
+  <script src="javascripts/jquery-2.1.4.js"></script>
+  <script src="stylesheets/bootstrap-3.3.5-dist/js/bootstrap.js"></script>
+  <script src="javascripts/socket.io.js"></script>
+  <script src="javascripts/code/chat-room.js"></script>
+  <script>
+  	$(function() {
+      // 鎖定建立連接
+  		$("#btnConn").click(function() {
+  			connect();
+  		});
+      // 鎖定發送連接
+  		$("#btnSend").click(function() {
+  			sendMsg();
+  		});
+      // 鎖定Enter
+      $('#smsg').keydown(function(event) {
+        if(event.which == 13) sendMsg();
+      });
+      // 鎖定Enter
+      $('#host').keydown(function(event) {
+        if(event.which == 13) connect();
+      });
+  	});
+  </script>
+</html>
